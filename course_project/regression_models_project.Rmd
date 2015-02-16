@@ -78,14 +78,14 @@ Here is how to understand the coefficients of the model:
 
 Numerical variables
 
-- if *log(wt)* changes by 1 (or wt changes by 10) the *mpg* value changes by -10.133,
-- if *hp* changes by 1 the *mpg* value changes by -0.027,
+- for every 1% increase in *log(wt)* we expect a decrease of 10.133 in *mpg*, all the other variables constant,
+- for every 1% increase in *hp* we expect a decrease of 0.027 in *mpg*, all the other variables constant,
 
 Factor variables
 
-- if we have 6 cylinders (*cyl6*), *mpg* changes by -2.205 compared to having 4 cylinders,
-- if we have 8 cylinders (*cyl8*), *mpg* changes by -1.789 compared to having 4 cylinders,
-- if we have a manual transmission (*am1*), *mpg* changes by 0.867 compared to having an automatic transmission. 
+- if we have 6 cylinders (*cyl6*), *mpg* changes by -2.205 compared to having 4 cylinders, all the other variables constant,
+- if we have 8 cylinders (*cyl8*), *mpg* changes by -1.789 compared to having 4 cylinders, all the other variables constant,
+- if we have a manual transmission (*am1*), *mpg* changes by 0.867 compared to having an automatic transmission, all the other variables constant. 
 
 ```{r echo=TRUE, message=FALSE}
 (ci <- confint(fitR2))

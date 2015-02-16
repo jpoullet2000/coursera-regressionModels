@@ -95,14 +95,14 @@ anova(fitR2)</code></pre>
 <p>Here is how to understand the coefficients of the model:</p>
 <p>Numerical variables</p>
 <ul>
-<li>if <em>log(wt)</em> changes by 1 (or wt changes by 10) the <em>mpg</em> value changes by -10.133,</li>
-<li>if <em>hp</em> changes by 1 the <em>mpg</em> value changes by -0.027,</li>
+<li>for every 1% increase in <em>log(wt)</em> we expect a decrease of 10.133 in <em>mpg</em>, all the other variables constant,</li>
+<li>for every 1% increase in <em>hp</em> we expect a decrease of 0.027 in <em>mpg</em>, all the other variables constant,</li>
 </ul>
 <p>Factor variables</p>
 <ul>
-<li>if we have 6 cylinders (<em>cyl6</em>), <em>mpg</em> changes by -2.205 compared to having 4 cylinders,</li>
-<li>if we have 8 cylinders (<em>cyl8</em>), <em>mpg</em> changes by -1.789 compared to having 4 cylinders,</li>
-<li>if we have a manual transmission (<em>am1</em>), <em>mpg</em> changes by 0.867 compared to having an automatic transmission.</li>
+<li>if we have 6 cylinders (<em>cyl6</em>), <em>mpg</em> changes by -2.205 compared to having 4 cylinders, all the other variables constant,</li>
+<li>if we have 8 cylinders (<em>cyl8</em>), <em>mpg</em> changes by -1.789 compared to having 4 cylinders, all the other variables constant,</li>
+<li>if we have a manual transmission (<em>am1</em>), <em>mpg</em> changes by 0.867 compared to having an automatic transmission, all the other variables constant.</li>
 </ul>
 <pre class="r"><code>(ci &lt;- confint(fitR2))</code></pre>
 <pre><code>##                    2.5 %        97.5 %
