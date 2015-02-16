@@ -1,8 +1,7 @@
 ---
-title: 'Practical Machine Learning Course Assignment'
+title: 'Regression models Course Assignment'
 author: "Jean-Baptiste Poullet"
-date: "2015-02-16"
-#output: html_document
+date: "February 16, 2015"
 output: pdf_document
 ---
 
@@ -12,7 +11,7 @@ The goal of this document is to respond to 2 main questions: "is an automatic or
 
 ## <a name="material"></a> Material
 The *mtcars* data are the input data. More information can be found about this data set by typing $?mtcars$ in R.  
-```{r echo=TRUE, results='hide', message=FALSE}
+```{r echo=FALSE, results='hide', message=FALSE}
 options(warn=-1)
 library(car)
 data(mtcars)
@@ -71,8 +70,8 @@ hat <- ifitR2$hat
 The hat values obtained with the influence function describes the influence each observed value has on each fitted value. 1 point seems to have more influence on the fitted values: "Maserati Bora. However this point is not dramatically high (see [Appendix](#Appendix)). The final selected model is *mpg ~ log(wt) + hp + cyl + am*.
 
 ## <a name="Discussion"></a> Discussion
-In this section both questions mentioned in [the Introduction](#Introduction) are answered based the model built in Section [Methods and results](#methodsResults). Summary of the model is given here.
-```{r echo=TRUE, message=FALSE}
+In this section both questions mentioned in [the Introduction](#Introduction) are answered based the model built in Section [Methods and results](#methodsResults). Summary of the model is given the [Appendix](#Appendix).
+```{r echo=FALSE, results='hide', message=FALSE}
 summary(fitR2) 
 ```
 Here is how to understand the coefficients of the model:
@@ -91,12 +90,7 @@ Factor variables
 ```{r echo=TRUE, message=FALSE}
 (ci <- confint(fitR2))
 ```
-Looking at the 95%-confidence interval of the estimates, one can see that the AM variable shows the interval [-2.04,3.77]. So it is not possible to tell whether an automatic transmission is better for MPG than a manual one. With the likelihood ratio test, we can say at least that adding the AM term in our model is not significantly better for estimating MPG as shown below.
-```{r echo=TRUE, message=FALSE}
-library("lmtest")
-fitR2R <- lm(mpg ~ log(wt) + hp + cyl, data=df)
-lrtest(fitR2, fitR2R)
-```
+Looking at the 95%-confidence interval of the estimates, one can see that the AM variable shows the interval [-2.04,3.77]. So it is not possible to tell whether an automatic transmission is better for MPG than a manual one. With the likelihood ratio test, we can say at least that adding the AM term in our model is not significantly better for estimating MPG as shown in the [Appendix](#Appendix).
 
 ## <a name="Appendix"></a> Appendix
 
@@ -142,4 +136,16 @@ boxplot(hat,ylab="Hat value")
 ```{r echo=TRUE, message=FALSE}
 par(mfrow=c(2,2))
 plot(fitR2)
+```
+
+### Fit summary for the model *mpg ~ log(wt) + am + hp + cyl*
+```{r echo=TRUE, message=FALSE}
+summary(fitR2) 
+```
+
+### Comparing the models with and without *am* (*mpg ~ log(wt) + am + hp + cyl* VS *mpg ~ log(wt) + hp + cyl*)
+```{r echo=FALSE, message=FALSE}
+library("lmtest")
+fitR2R <- lm(mpg ~ log(wt) + hp + cyl, data=df)
+lrtest(fitR2, fitR2R)
 ```
